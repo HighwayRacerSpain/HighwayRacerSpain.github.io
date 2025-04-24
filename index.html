@@ -29,6 +29,13 @@
 <link rel="stylesheet" href="css/styles.css" />
 <!-- Font Awesome -->
 <link href="font/css/font-awesome.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+  <title>Ranking</title>
+  <style>
+    body { font-family: Arial; }
+    ul { list-style-type: none; padding: 0; }
+    li { padding: 10px; border-bottom: 1px solid #ccc; }
+  </style>
 </head>
 
 <body>
@@ -271,7 +278,7 @@
       <h2>Our Plans</h2>
       <p>At lorem Ipsum available, but the majority have suffered alteration in some form by injected humour.</p>
     </div>
-          <!-- Lista de elementos -->
+      <!-- Lista de elementos -->
     <ul class="list-group">
       <li class="list-group-item">Un elemento</li>
       <li class="list-group-item">Un segundo elemento</li>
@@ -279,6 +286,24 @@
       <li class="list-group-item">Un cuarto elemento</li>
       <li class="list-group-item">Y un quinto elemento</li>
     </ul>
+    <h1>Ranking</h1>
+    <ul id="ranking-list"></ul>
+  
+    <script>
+      fetch('ranking.json')
+        .then(response => response.json())
+        .then(data => {
+          const lista = document.getElementById('ranking-list');
+          data.sort((a, b) => b.puntos - a.puntos); // Ordena de mayor a menor
+  
+          data.forEach((item, index) => {
+            const li = document.createElement('li');
+            li.textContent = `${index + 1}. ${item.nombre} - ${item.puntos} pts`;
+            lista.appendChild(li);
+          });
+        })
+        .catch(error => console.error('Error al cargar el ranking:', error));
+    </script>
     <div class="row flat">
       <div class="col-lg-3 col-md-3 col-xs-12">
         <ul class="plan plan1">
