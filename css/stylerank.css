@@ -1,0 +1,151 @@
+/* En tu ranking-styles.css */
+
+/* Contenedor principal del ranking */
+#ranking-container {
+    background-color: #fffacd; /* Amarillo pálido (LemonChiffon) para el fondo del panel */
+    border: 2px solid #ffd700; /* Borde dorado/amarillo más oscuro */
+    border-radius: 10px;
+    padding: 20px;
+    width: 90%;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); /* Sombra amarilla sutil */
+    margin-bottom: 20px;
+    color: #000000; /* Color de texto principal negro */
+}
+
+/* Cabecera de la tabla (simulada) */
+.ranking-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background-color: #fff0b3; /* Amarillo un poco más oscuro para cabecera */
+    color: #333333; /* Texto de cabecera gris oscuro */
+    font-weight: bold;
+    border-bottom: 2px solid #ffd700; /* Borde dorado */
+    margin-bottom: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.header-pos, .header-nick, .header-rank, .header-stats {
+    text-align: left;
+}
+.header-pos { flex: 0 0 50px; text-align: center; }
+.header-nick { flex: 1 1 auto; }
+.header-rank { flex: 0 0 80px; text-align: center; }
+.header-stats { flex: 0 0 150px; text-align: right; }
+
+
+/* Lista del ranking */
+#ranking-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Cada entrada del ranking */
+#ranking-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border-bottom: 1px solid #ffe48c; /* Separador amarillo muy claro */
+    transition: background-color 0.2s ease-in-out;
+    color: #000000; /* Texto de fila negro */
+}
+
+#ranking-list li:last-child {
+    border-bottom: none;
+}
+
+#ranking-list li:hover {
+    background-color: #fff5cc; /* Hover amarillo muy pálido */
+}
+
+/* Estilos para las partes de cada entrada */
+.rank-position {
+    flex: 0 0 50px;
+    font-weight: bold;
+    color: #4A4A4A; /* Gris oscuro para la posición */
+    text-align: center;
+}
+
+.rank-nickname {
+    flex: 1 1 auto;
+    color: #000000; /* Nickname negro */
+    font-weight: 500;
+}
+
+.rank-badge {
+    flex: 0 0 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rank-badge span {
+    background-color: #ffd700; /* Dorado/Amarillo para el fondo del badge */
+    color: #000000; /* Texto negro en el badge */
+    border: 1px solid #ccac00; /* Borde dorado más oscuro */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.rank-stats {
+    flex: 0 0 150px;
+    text-align: right;
+    font-size: 0.95em;
+    color: #333333; /* Estadísticas en gris oscuro */
+}
+
+.rank-victories {
+    color: #28a745; /* Verde oscuro para victorias (buen contraste con amarillo) */
+}
+.rank-defeats {
+    color: #dc3545; /* Rojo oscuro para derrotas (buen contraste con amarillo) */
+}
+
+
+/* Mensaje de estado y botón de actualizar */
+#status {
+    margin-top: 15px;
+    text-align: center;
+    color: #555555; /* Gris medio para el estado */
+    font-style: italic;
+}
+
+button#refresh-button {
+    background-color: #ffd700; /* Botón amarillo/dorado */
+    color: #000000; /* Texto negro en el botón */
+    border: 2px solid #ccac00; /* Borde dorado más oscuro */
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Sombra más sutil */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+button#refresh-button:hover {
+    background-color: #ffc107; /* Amarillo un poco más oscuro al pasar el ratón */
+}
+
+button#refresh-button:active {
+    background-color: #e0a800; /* Amarillo más oscuro al hacer clic */
+    transform: translateY(1px);
+}

@@ -6,29 +6,30 @@
 <html lang="en-gb" class="no-js">
 <!--<![endif]-->
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<!--[if lt IE 9]> 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <![endif]-->
-<title>Highway Racer Spain Game</title>
-<meta name="description" content="">
-<meta name="author" content="WebThemez">
-<!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-<!--[if lte IE 8]>
-		<script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>
-	<![endif]-->
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="css/isotope.css" media="screen" />
-<link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
-<link href="css/animate.css" rel="stylesheet" media="screen">
-<link href="flexslider/flexslider.css" rel="stylesheet" />
-<link href="js/owl-carousel/owl.carousel.css" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css" />
-<!-- Font Awesome -->
-<link href="font/css/font-awesome.min.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- ... otros metatags ... -->
+  <title>Highway Racer Spain Game</title>
+  <meta name="description" content="">
+  <meta name="author" content="WebThemez">
+  <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <!--[if lte IE 8]>
+      <script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/isotope.css" media="screen" />
+  <link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
+  <link href="css/animate.css" rel="stylesheet" media="screen">
+  <link href="flexslider/flexslider.css" rel="stylesheet" />
+  <link href="js/owl-carousel/owl.carousel.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- Font Awesome -->
+  <link href="font/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- ¡¡AÑADE ESTA LÍNEA PARA TU CSS DEL RANKING!! -->
+  <link rel="stylesheet" href="css/stylerank.css" />
 <body>
 <header class="header">
   <div class="container">
@@ -40,7 +41,7 @@
       <div id="main-nav" class="collapse navbar-collapse">
         <ul class="nav navbar-nav" id="mainNav">
           <li class="active" id="firstLink"><a href="#home" class="scroll-link">Inicio</a></li>
-          <li><a href="#services" class="scroll-link"></a></li>
+          <li><a href="#services" class="scroll-link">En que consiste</a></li>
           <li><a href="#aboutUs" class="scroll-link">Nuestro juego</a></li>
           <li><a href="#work" class="scroll-link">Galeria</a></li>
           <li><a href="#plans" class="scroll-link">Rankings</a></li>
@@ -65,7 +66,7 @@
                 <img src="images/slides/HighwayRacerSpain.jpg" alt="" />
                 <div class="flex-caption">
                     <h3>Personalizacion propia</h3> 
-					<p></p>  
+					<p>En este videojuego hemos empleado nuestra imaginacion para construirlo y sacarlo globalmente.</p>  
                 </div>
               </li>
               <li>
@@ -265,95 +266,19 @@
 <section id="plans" class="page-section">
   <div class="container">
     <div class="heading text-center"> 
-      <!-- Heading -->
-      <h1>🏆 Ranking del Juego 🏆</h1>
-      <div id="ranking-container">
-          <ul id="ranking-list">
-              <!-- Las puntuaciones se insertarán aquí por JavaScript -->
-          </ul>
-          <div id="status">Cargando ranking...</div>
-      </div>
-      <button id="refresh-button">Actualizar Ranking</button>
-      <script>
-                  const rankingListElement = document.getElementById('ranking-list');
-        const statusElement = document.getElementById('status');
-        const refreshButton = document.getElementById('refresh-button');
-
-        // ¡¡IMPORTANTE!! Reemplaza esto con la URL de tu Google Apps Script
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxlbM5uB618y76L-MVGqn69Jujt8L3ZsTZe0wOwMuc6EpfYJzgPGz2-BpmeBXHCFdtR/exec";
-
-        async function fetchRanking() {
-            statusElement.textContent = "Cargando ranking...";
-            rankingListElement.innerHTML = ''; // Limpiar lista anterior
-
-            try {
-                const response = await fetch(SCRIPT_URL);
-
-                if (!response.ok) {
-                    // Manejar errores HTTP (4xx, 5xx)
-                    throw new Error(`Error HTTP ${response.status}: ${response.statusText}`);
-                }
-
-                const rankingData = await response.json(); // Parsea la respuesta como JSON
-
-                if (rankingData && Array.isArray(rankingData)) {
-                    if (rankingData.length === 0) {
-                        statusElement.textContent = "El ranking está vacío.";
-                    } else {
-                        displayRanking(rankingData);
-                        statusElement.textContent = "Ranking cargado.";
-                    }
-                } else if (rankingData && rankingData.error) {
-                    // Si el Apps Script devolvió un JSON de error propio
-                    throw new Error(`Error del script: ${rankingData.error}`);
-                }
-                 else {
-                    throw new Error("Respuesta inválida o no es un array JSON.");
-                }
-
-            } catch (error) {
-                console.error("Error al obtener el ranking:", error);
-                statusElement.textContent = `Error al cargar: ${error.message}`;
-            }
-        }
-
-        function displayRanking(data) {
-            data.forEach((entry, index) => {
-                const listItem = document.createElement('li');
-                listItem.innerHTML = `
-                    <span>${index + 1}.</span>
-                    <span class="rank-name">${escapeHtml(entry.name)}</span>
-                    <span class="rank-score">${entry.score}</span>
-                `;
-                rankingListElement.appendChild(listItem);
-            });
-        }
-
-        // Función simple para escapar HTML y prevenir XSS básico
-        function escapeHtml(unsafe) {
-            if (typeof unsafe !== 'string') {
-                return unsafe; // Devolver como está si no es string (ej. score)
-            }
-            return unsafe
-                 .replace(/&/g, "&")
-                 .replace(/</g, "<")
-                 .replace(/>/g, ">")
-                 .replace(/"/g, "")
-                 .replace(/'/g, "'");
-        }
-
-        // Cargar el ranking cuando la página carga
-        document.addEventListener('DOMContentLoaded', fetchRanking);
-
-        // Event listener para el botón de actualizar
-        if (refreshButton) {
-            refreshButton.addEventListener('click', fetchRanking);
-        }
-
-        // Opcional: Actualizar automáticamente cada X segundos
-        // setInterval(fetchRanking, 30000); // Actualiza cada 30 segundos (30000 ms)
-      </script>
+    </div>
+    <div class="container text-center">
+    <h1>🏆 Ranking del Juego 🏆</h1> <!-- Puedes mover este H1 aquí arriba si quieres -->
   </div>
+    <!-- Contenedor principal del ranking -->
+    <div id="ranking-container">
+        <ul id="ranking-list">
+            <!-- Las puntuaciones se insertarán aquí por JavaScript desde ranking.js -->
+        </ul>
+        <div id="status">Cargando ranking...</div>
+    </div>
+    <button id="refresh-button">Actualizar Ranking</button>
+  </div> <!-- /.container -->
 </section>
 <section id="team" class="page-section">
   <div class="container">
@@ -482,6 +407,7 @@
 <script src="js/waypoints.js"></script> 
 <script src="flexslider/jquery.flexslider.js"></script>
 <script src="js/custom.js" type="text/javascript"></script> 
+<script src="js/ranking.js" type="text/javascript"></script> 
 <script src="js/owl-carousel/owl.carousel.js"></script>
 </body>
 </html>
