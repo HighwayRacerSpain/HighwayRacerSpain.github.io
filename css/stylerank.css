@@ -149,3 +149,21 @@ button#refresh-button:active {
     background-color: #e0a800; /* Amarillo más oscuro al hacer clic */
     transform: translateY(1px);
 }
+.download-box-platform {
+    padding: 15px;
+    border: 1px solid #ddd; /* Borde sutil */
+    border-radius: 5px;
+    margin-bottom: 20px; /* Espacio entre cajas en móviles */
+    background-color: #f8f8f8; /* Fondo muy claro */
+    text-align: center; /* Centrar contenido de la caja */
+    min-height: 280px; /* Intenta darles una altura mínima similar, ajusta según contenido */
+}
+
+.download-box-platform h4 {
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.download-box-platform .btn {
+    margin-bottom: 5px; /* Pequeño espacio después del botón */
+}
